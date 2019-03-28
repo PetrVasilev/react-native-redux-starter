@@ -7,7 +7,7 @@ class Music extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Main</Text>
+        <Text>Music</Text>
       </View>
     )
   }

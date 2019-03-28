@@ -1,9 +1,11 @@
 import React from 'react'
+import { Provider } from 'react-redux'
 import Icon from 'react-native-vector-icons/dist/Ionicons'
 import { createBottomTabNavigator, createAppContainer } from 'react-navigation'
 
 import { Main, Search, Music } from './containers'
 import { Colors } from './config'
+import store from './store'
 
 const AppNavigator = createBottomTabNavigator(
   {
@@ -51,4 +53,16 @@ const AppNavigator = createBottomTabNavigator(
   }
 )
 
-export default createAppContainer(AppNavigator)
+const Navigation = createAppContainer(AppNavigator)
+
+class App extends React.Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <Navigation />
+      </Provider>
+    )
+  }
+}
+
+export default App
