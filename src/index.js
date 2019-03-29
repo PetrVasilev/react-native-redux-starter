@@ -1,13 +1,17 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 import Icon from 'react-native-vector-icons/dist/Ionicons'
-import { createBottomTabNavigator, createAppContainer } from 'react-navigation'
+import {
+  createBottomTabNavigator,
+  createStackNavigator,
+  createAppContainer
+} from 'react-navigation'
 
-import { Main, Search, Music } from './containers'
+import { Main, Search, Music, Player } from './containers'
 import { Colors } from './config'
 import store from './store'
 
-const AppNavigator = createBottomTabNavigator(
+const AppBottomNavigator = createBottomTabNavigator(
   {
     MainTab: {
       screen: Main,
@@ -53,7 +57,22 @@ const AppNavigator = createBottomTabNavigator(
   }
 )
 
-const Navigation = createAppContainer(AppNavigator)
+const Root = createStackNavigator(
+  {
+    App: {
+      screen: AppBottomNavigator
+    },
+    Player: {
+      screen: Player
+    }
+  },
+  {
+    mode: 'modal',
+    headerMode: 'none'
+  }
+)
+
+const Navigation = createAppContainer(Root)
 
 class App extends React.Component {
   render() {
