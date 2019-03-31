@@ -14,4 +14,6 @@ class Main extends React.Component {
   }
 }
 
-export default connect()(Main)
+export default connect(state => ({
+  session: state.session
+}))(Main)

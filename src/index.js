@@ -1,13 +1,9 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 import Icon from 'react-native-vector-icons/dist/Ionicons'
-import {
-  createBottomTabNavigator,
-  createStackNavigator,
-  createAppContainer
-} from 'react-navigation'
+import { createBottomTabNavigator, createAppContainer } from 'react-navigation'
 
-import { Main, Search, Music, Player } from './containers'
+import { Main, Profile } from './containers'
 import { Colors } from './config'
 import store from './store'
 
@@ -25,24 +21,12 @@ const AppBottomNavigator = createBottomTabNavigator(
         )
       }
     },
-    SearchTab: {
-      screen: Search,
+    ProfileTab: {
+      screen: Profile,
       navigationOptions: {
         tabBarIcon: ({ focused }) => (
           <Icon
-            name="ios-search"
-            size={30}
-            color={focused ? Colors.primary : 'black'}
-          />
-        )
-      }
-    },
-    MusicTab: {
-      screen: Music,
-      navigationOptions: {
-        tabBarIcon: ({ focused }) => (
-          <Icon
-            name="ios-musical-notes"
+            name="ios-person"
             size={30}
             color={focused ? Colors.primary : 'black'}
           />
@@ -57,22 +41,7 @@ const AppBottomNavigator = createBottomTabNavigator(
   }
 )
 
-const Root = createStackNavigator(
-  {
-    App: {
-      screen: AppBottomNavigator
-    },
-    Player: {
-      screen: Player
-    }
-  },
-  {
-    mode: 'modal',
-    headerMode: 'none'
-  }
-)
-
-const Navigation = createAppContainer(Root)
+const Navigation = createAppContainer(AppBottomNavigator)
 
 class App extends React.Component {
   render() {
